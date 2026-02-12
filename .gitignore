@@ -1,5 +1,30 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
 /.vs
+
+# Build / IDE
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.db
+*.db-shm
+*.db-wal
+
+# Node
+node_modules/
+dist/
+.npm
+
+# Env / secrets (if any)
+.env
+.env.local
+*.pfx
+/project-files
+/src/Honeydew/.vs/Honeydew/v17
+/src/Honeydew/.vs/Honeydew/DesignTimeBuild
+/src/Honeydew/.vs/Honeydew/FileContentIndex
+/src/Honeydew/.vs/ProjectEvaluation
+/src/Honeydew/.vs/Honeydew/config
