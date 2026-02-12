@@ -1,0 +1,151 @@
+/* Honeydew: black/white, old-school notepad, line-art / doodle sketch style */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --paper: #f8f6f1;
+  --ink: #1a1a1a;
+  --pencil: #555;
+  --line: #2a2a2a;
+  --border-width: 2px;
+  --radius: 2px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Hand-drawn / sketch box: irregular border feel via layered shadow */
+.sketch-box {
+  border: var(--border-width) solid var(--line);
+  border-radius: var(--radius);
+  box-shadow:
+    1px 1px 0 var(--line),
+    2px 2px 0 var(--line),
+    3px 0 0 var(--line),
+    0 3px 0 var(--line);
+  background: var(--paper);
+}
+
+.sketch-title {
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  font-size: 2rem;
+  margin: 0 0 1rem;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.sketch-label {
+  font-size: 0.75rem;
+  color: var(--pencil);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.sketch-input {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: none;
+  border-bottom: var(--border-width) solid var(--line);
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.sketch-input::placeholder {
+  color: var(--pencil);
+  opacity: 0.8;
+}
+
+.sketch-input:hover {
+  border-bottom-color: var(--ink);
+}
+
+.sketch-input:focus {
+  border-bottom-color: var(--ink);
+  box-shadow: 0 2px 0 0 var(--ink);
+}
+
+.sketch-btn {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: transparent;
+  border: var(--border-width) solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+.sketch-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.sketch-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sketch-btn.primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.sketch-btn.primary:hover:not(:disabled) {
+  background: var(--line);
+  box-shadow: 1px 1px 0 var(--line);
+}
+
+.sketch-link {
+  color: var(--pencil);
+  text-decoration: none;
+  font-size: 0.85rem;
+  border-bottom: 1px dashed var(--pencil);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.sketch-link:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.sketch-error {
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: rgba(0,0,0,0.06);
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.6rem;
+  margin-top: 0.5rem;
+  border-radius: var(--radius);
+}

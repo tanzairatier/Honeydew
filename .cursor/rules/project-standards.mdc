@@ -1,0 +1,20 @@
+---
+description: Project standards — critique, no guessing, styles, docs, project-files
+alwaysApply: true
+---
+
+# Honeydew Project Standards
+
+- **Critique like an expert.** Don’t just implement requests as given. Consider performance, modernization, readability, security, and usability. Suggest better approaches when appropriate.
+- **No guessing.** Don’t fill in blanks when unsure. Ask or state assumptions explicitly. Be authentic.
+- **Follow existing code style.** Match naming, formatting, and patterns already in the codebase. Don’t mix styles.
+- **Follow .editorconfig for C#.** Honor .editorconfig (primary constructors, braces for all if/for/foreach/while/do, etc.).
+- **Use design docs as source of truth.** Prefer `DesignPad.md` and `DetailedDesign.md` for high-level behavior and architecture.
+- **Cursor-generated reference files.** Put design updates, user-guide notes, and other cursor-generated project text in the `project-files` folder (playground for reference material).
+- **Reduce token usage.** Prefer concise context: reference docs and project-files instead of re-explaining; use memory banking when the tooling supports it.
+- **Migrations.** Name EF Core migrations with versioning only, no timestamp: e.g. `InitialCreate_v1_0_0.cs`, `SyncModel_v1_0_0.cs`, `AddTodoItems_v1_1_0.cs`. File name = class name = Migration id. See `project-files/migration-naming.md`.
+- **API style.** RESTful: routes are nouns, HTTP method is the verb. Route + method reads like a full English sentence (e.g. POST /api/auth/register-tenant = “Register tenant”).
+- **Style.** Newline after closing `}` before the next code line, unless the next line is another `}`. No “ghost lines”: avoid `var x = null;` or declarations that only initialize; use private methods or return values instead. Avoid overuse of tuples; use named types (classes/records) when a good modeling name exists.
+- **Comments.** Prefer XML doc comments (`/// <summary>`) for public APIs (controllers, services, key types). Avoid logging code details (e.g. method names); log sparingly for operational/debug value; never log secrets, tokens, or PII.
+- **Logging.** Use `ILogger` sparingly (e.g. migration success/failure, startup, critical failures). Never log method names or implementation details. Never log sensitive data (passwords, tokens, full auth payloads). Prefer structured messages that help diagnose environment or configuration issues.
+- **Unit tests.** Only the type under test is real; mock everything else. Use MSTest: `[TestClass]`, `[TestMethod]`, `[TestInitialize]`. Segment each test with `// Arrange`, `// Act`, `// Assert`. Use TestInitialize to remove boilerplate so each test is focused. SI = small integration (minimal/no mocking); LI = large integration (no mocking); for now focus on unit tests only with full mocking and narrow, single-object focus.

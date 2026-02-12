@@ -1,0 +1,34 @@
+@Honeydew_HostAddress = http://localhost:5050
+@Token = your-jwt-here
+
+### Register (create tenant + owner)
+POST {{Honeydew_HostAddress}}/api/auth/register-tenant
+Content-Type: application/json
+
+{
+  "tenantName": "Test Household",
+  "ownerEmail": "owner@example.com",
+  "password": "Password123!",
+  "ownerDisplayName": "Owner"
+}
+
+### Login
+# @name login
+POST {{Honeydew_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "owner@example.com",
+  "password": "Password123!"
+}
+
+### Get current tenant (replace Token with the "token" value from login response)
+GET {{Honeydew_HostAddress}}/api/tenant
+Authorization: Bearer {{Token}}
+
+### List todos
+GET {{Honeydew_HostAddress}}/api/todos?page=1&pageSize=9
+Authorization: Bearer {{Token}}
+
+### Health (no auth)
+GET {{Honeydew_HostAddress}}/api/health/status
